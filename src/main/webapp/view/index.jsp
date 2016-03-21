@@ -10,17 +10,9 @@
 <head>
     <title>Hello Java</title>
     <h1>Hello Hello</h1>
-    <table>
-        <tr><td>kjljklj</td>
-            <td>jkljlkj</td>
-        </tr>
-        <tr>
-    <td>啥时回是男是女</td>
-            <td>jlkjlkhalhlhlhljljkljl</td>
-        </tr>
-    </table>
     <h2>哈哈</h2>
     <h3>jlkjlkjlj</h3>
+    <h1><哈哈哈哈哈哈哈哈哈哈哈哈哈哈></哈哈哈哈哈哈哈哈哈哈哈哈哈哈></h1>
 </head>
 <body>
 

@@ -4,8 +4,7 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+
 
 import java.io.File;
 import java.io.FileWriter;
@@ -40,7 +39,15 @@ public class MyCrawler extends WebCrawler {
             String html = htmlParseData.getHtml();
             Set<WebURL> links = htmlParseData.getOutgoingUrls();
             try {
-                File file = new File(new File("D:/crawlerTest/"),"b.html");
+                File dir = new File("D:/crawlerTest/");
+                File file = null;
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
+                file = new File(dir,"b.html");
+                if(file==null){
+                    file.createNewFile();
+                }
                 FileWriter writer = new FileWriter(file);
                 writer.write(html);
                 writer.flush();

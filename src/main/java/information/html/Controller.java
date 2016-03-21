@@ -1,5 +1,6 @@
 package information.html;
 
+
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
@@ -16,6 +17,8 @@ public class Controller {
 
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
+//        config.setProxyHost("proxyserver.example.com");
+//        config.setProxyPort(8080);
 
         /*
          * Instantiate the controller for this crawl.
@@ -31,7 +34,7 @@ public class Controller {
          * which are found in these pages
          */
         controller.addSeed("http://www.sina.com.cn");
-//        controller.addSeed("http://www.ics.uci.edu/~welling/");
+//        controller.addSeed("http://http://www.csdn.net/");
 //        controller.addSeed("http://www.ics.uci.edu/");
 
         /*
