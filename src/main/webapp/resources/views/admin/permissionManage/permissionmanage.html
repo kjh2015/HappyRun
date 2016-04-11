@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>行为管理</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-xs-12 col-md-12">
+			<div class="well with-header with-footer">
+				<div class="header bordered-blue">行为列表</div>
+				<div class="table-toolbar">
+					<a id="editabledatatable_new" href="javascript:void(0);"
+						ng-click="preAddPermission();" class="btn btn-default">添加行为 </a>
+				</div>
+				<div>
+					<div class="form-horizontal form-bordered">
+						<div class="form-group">
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">行为编号</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入行为编号"
+									ng-model="permissionForSearch.permissionid">
+							</div>
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">行为名称</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入行为名称"
+									ng-model="permissionForSearch.permissionname">
+							</div>
+						</div>
+						<div class="form-group" style="padding-bottom: 15px;">
+							<div class="col-sm-offset-1 col-sm-1">
+								<button type="button" class="btn btn-palegreen"
+									ng-click="searchPermission()">搜索</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>编号</th>
+							<th>行为名称</th>
+							<th>创建时间</th>
+							<th>修改时间</th>
+							<th>管理</th>
+							<th>修改</th>
+							<th>删除</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="permission in permissions">
+							<td>{{$index+1}}</td>
+							<td>{{permission.permissionid}}</td>
+							<td>{{permission.permissionname}}</td>
+							<td>{{permission.createTime}}</td>
+							<td ng-if="permission.editeTime == null">无</td>
+							<td ng-if="permission.editeTime != null">{{permission.editeTime}}</td>
+							<td><a href="javascript:void(0);"
+								ng-click="prePermissionRole(permission.permissionid)"
+								class="btn btn-default btn-xs black"><i
+									class="glyphicon glyphicon-transfer"></i>管理</a></td>
+							<td><a href="javascript:void(0);"
+								ng-click="preEditPermission(permission.permissionid)"
+								class="btn btn-default btn-xs black"><i
+									class="glyphicon glyphicon-pencil"></i>修改</a></td>
+							<td><a href="javascript:void(0);"
+								ng-click="deletePermission(permission.permissionid)"
+								class="btn btn-default btn-xs black"><i
+									class="fa fa-trash-o"></i>删除</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row DTTTFooter">
+					<div class="col-sm-5 col-md-5">
+						<div class="dataTables_info" id="simpledatatable_info"
+							role="alert" aria-live="polite" aria-relevant="all">共{{page.totalCount}}条数据，每页{{page.size}}条</div>
+					</div>
+					<div class="col-sm-7 col-md-7">
+						<div class="dataTables_paginate paging_bootstrap"
+							id="simpledatatable_paginate">
+							<ul id="page" class="pagination pull-right">
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

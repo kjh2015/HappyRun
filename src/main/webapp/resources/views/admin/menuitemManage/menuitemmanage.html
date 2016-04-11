@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>菜单项管理</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-xs-12 col-md-12">
+			<div class="well with-header with-footer">
+				<div class="header bordered-blue">菜单项列表</div>
+				<div class="table-toolbar">
+					<a id="editabledatatable_new" href="javascript:void(0);"
+						ng-click="preAddMenuItem();" class="btn btn-default">添加菜单项 </a>
+				</div>
+				<div>
+					<div class="form-horizontal form-bordered">
+						<div class="form-group">
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">菜单项编号</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入菜单项编号"
+									ng-model="menuitemForSearch.menuitemid">
+							</div>
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">所属菜单</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入所属菜单"
+									ng-model="menuitemForSearch.menuname">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">标题</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入标题"
+									ng-model="menuitemForSearch.menuitemname">
+							</div>
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">地址</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入地址"
+									ng-model="menuitemForSearch.menuitemurl">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">路由地址</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入路由地址"
+									ng-model="menuitemForSearch.menuitemrouteurl">
+							</div>
+							<label for="inputEmail3"
+								class="col-sm-2 control-label no-padding-right">控制器</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="请输入控制器"
+									ng-model="menuitemForSearch.menuitemctrl">
+							</div>
+						</div>
+						<div class="form-group" style="padding-bottom: 15px;">
+							<div class="col-sm-offset-1 col-sm-1">
+								<button type="button" class="btn btn-palegreen"
+									ng-click="searchMenuItem()">搜索</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>编号</th>
+							<th>所属菜单</th>
+							<th>标题</th>
+							<th>排序</th>
+							<th>地址</th>
+							<th>路由地址</th>
+							<th>控制器</th>
+							<th>父菜单项编号</th>
+							<th>是否显示</th>
+							<th>管理</th>
+							<th>修改</th>
+							<th>删除</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="menuitem in menuitems">
+							<td>{{$index+1}}</td>
+							<td>{{menuitem.menuitemid}}</td>
+							<td>{{menuitem.menuname}}</td>
+							<td>{{menuitem.menuitemname}}</td>
+							<td>{{menuitem.menuitemorder}}</td>
+							<td>{{menuitem.menuitemurl}}</td>
+							<td>{{menuitem.menuitemrouteurl}}</td>
+							<td>{{menuitem.menuitemctrl}}</td>
+							<td>{{menuitem.menuitemparentid}}</td>
+							<td ng-if="menuitem.isshow == 'true'">是</td>
+							<td ng-if="menuitem.isshow == 'false'">否</td>
+							<td><a href="javascript:void(0);"
+								ng-click="preMenuItemRole(menuitem.menuitemid)"
+								class="btn btn-default btn-xs black"><i
+									class="glyphicon glyphicon-transfer"></i>管理</a></td>
+							<td><a href="javascript:void(0);"
+								ng-click="preEditMenuItem(menuitem.menuitemid)"
+								class="btn btn-default btn-xs black"><i
+									class="glyphicon glyphicon-pencil"></i>修改</a></td>
+							<td><a href="javascript:void(0);"
+								ng-click="deleteMenuItem(menuitem.menuitemid)"
+								class="btn btn-default btn-xs black"><i
+									class="fa fa-trash-o"></i>删除</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row DTTTFooter">
+					<div class="col-sm-5 col-md-5">
+						<div class="dataTables_info" id="simpledatatable_info"
+							role="alert" aria-live="polite" aria-relevant="all">共{{page.totalCount}}条数据，每页{{page.size}}条</div>
+					</div>
+					<div class="col-sm-7 col-md-7">
+						<div class="dataTables_paginate paging_bootstrap"
+							id="simpledatatable_paginate">
+							<ul id="page" class="pagination pull-right">
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

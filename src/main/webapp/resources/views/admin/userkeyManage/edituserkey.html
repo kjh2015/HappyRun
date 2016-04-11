@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>修改用户验证信息</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12 col-sm-12 col-xs-12">
+			<div class="widget">
+				<div class="widget-header bordered-bottom bordered-palegreen">
+					<span class="widget-caption">修改用户验证信息</span>
+				</div>
+				<div class="widget-body">
+					<div>
+						<div class="form-horizontal form-bordered">
+							<div class="form-group" style="display: none">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">用户验证信息编号</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control"
+										placeholder="请输入用户验证信息编号" ng-model="edituserkey.userkeyId">
+								</div>
+							</div>
+							<div class="form-group" style="display: none">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">用户编号</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入用户编号"
+										ng-model="edituserkey.userId">
+								</div>
+							</div>
+							<div class="form-group" style="display: none">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">用户登录密码</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入用户登录密码"
+										ng-model="edituserkey.password">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">登录名称</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入用户登录名"
+										ng-model="edituserkey.loginname">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-1">
+									<button type="submit" class="btn btn-palegreen"
+										ng-click="editUserkey()">确认</button>
+								</div>
+								<div class="col-sm-1">
+									<button type="submit" class="btn btn-palegreen"
+										ng-click="back()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

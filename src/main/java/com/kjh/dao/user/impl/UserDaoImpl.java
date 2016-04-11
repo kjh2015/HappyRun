@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  * Created by Administrator on 2016/3/20.
  */
 //@Component(value = "userDaoImpl")
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl  {
     @Resource
     private SqlSessionFactory factory;
 

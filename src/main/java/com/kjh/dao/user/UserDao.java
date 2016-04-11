@@ -6,5 +6,8 @@ import com.kjh.domain.user.User;
 
 public interface UserDao {
     User getUserById(int userid);
-
+    void insertUser(User user);
+    void updateUser(User user);
+    void deleteUser(int userid);
+    User login(User user);
 }

@@ -3,19 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kjh.dao.user.UserDao">
-   <!-- <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyColumn="id">
+    <insert id="insertUser" parameterType="com.kjh.domain.user.User">
         insert into t_user(username) values(#{username})
     </insert>
 
-    <update id="updateUser" parameterType="User">
-        update t_user set username=#{username} where id=#{id}
-    </update>-->
+        <update id="updateUser" parameterType="com.kjh.domain.user.User">
+            update t_user set username=#{username} where userid=#{userid}
+        </update>
 
     <select id="getUserById" parameterType="int" resultType="com.kjh.domain.user.User">
         select * from t_user where userid=#{id}
     </select>
 
-   <!-- <delete id="deleteUser" parameterType="int">
-        delete from t_user where id=#{id}
-    </delete>-->
+    <select id="login" parameterType="com.kjh.domain.user.User" resultType="com.kjh.domain.user.User">
+        select * from t_user where username=#{username} and password=#{password}
+    </select>
+
+  <delete id="deleteUser" parameterType="int">
+        delete from t_user where userid=#{userid}
+    </delete>
 </mapper>

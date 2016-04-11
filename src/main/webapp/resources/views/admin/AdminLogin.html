@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html ng-app="loginApp">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>后台登录</title>
+<meta name="description" content="login page" />
+<link rel="shortcut icon" href="../../imgs/favicon.png"
+	type="image/x-icon">
+<!--Basic Styles-->
+<link href="../../css/libs/bootstrap.min.css" rel="stylesheet" />
+<link href="../../css/libs/font-awesome.min.css" rel="stylesheet" />
+<!--Beyond styles-->
+<link id="beyond-link" href="../../css/libs/beyond.min.css"
+	rel="stylesheet" />
+<link href="../../css/libs/animate.min.css" rel="stylesheet" />
+<link href="../../css/plugins/ngDialog/ngDialog.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="../../css/plugins/ngDialog/ngDialog-theme-default.css">
+<link rel="stylesheet"
+	href="../../css/plugins/ngDialog/ngDialog-theme-plain.css">
+<link rel="stylesheet"
+	href="../../css/plugins/ngDialog/ngDialog-custom-width.css">
+</head>
+<!--Head Ends-->
+<!--Body-->
+<body ng-controller="LoginController" >
+	<!-- Loading Container -->
+	<div class="loading-container">
+		<div class="loading-progress">
+			<div class="rotator">
+				<div class="rotator">
+					<div class="rotator colored">
+						<div class="rotator">
+							<div class="rotator colored">
+								<div class="rotator colored"></div>
+								<div class="rotator"></div>
+							</div>
+							<div class="rotator colored"></div>
+						</div>
+						<div class="rotator"></div>
+					</div>
+					<div class="rotator"></div>
+				</div>
+				<div class="rotator"></div>
+			</div>
+			<div class="rotator"></div>
+		</div>
+	</div>
+	<!--  Loading Container -->
+
+	<div class="login-container animated fadeInDown" ng-if="!hide">
+		<div class="loginbox bg-white">
+			<div class="loginbox-title">优售管理系统</div>
+			<div class="loginbox-social">
+				<div class="social-title ">使用适当方式登录</div>
+				<div class="social-buttons">
+					<img style="cursor: pointer" src="../../imgs/app/phone_normal.png"
+						style="padding: 0 8px; padding: 0 10px\9;"
+						ng-click="tab='telphone';reset()" /> <img style="cursor: pointer"
+						src="../../imgs/app/message_normal.png"
+						style="padding: 0 8px; padding: 0 10px\9;"
+						ng-click="tab='sms';reset()" /> <img style="cursor: pointer"
+						src="../../imgs/app/usale_normal.png"
+						style="padding: 0 8px; padding: 0 10px\9;"
+						ng-click="tab='usale';reset()" />
+				</div>
+			</div>
+			<!-- 优售号登录 -->
+			<div class="loginbox-textbox" ng-show="tab=='usale'">
+				<input type="text" class="form-control " placeholder="请输入优售号"
+					ng-model="userkeyVo.businessname1" ng-change="isInputForBus()" />
+
+			</div>
+			<!-- 手机登录 -->
+			<div class="loginbox-textbox" ng-show="tab=='sms'||tab=='telphone'">
+				<input type="text" class="form-control " placeholder="+86"
+					ng-model="prefix" style="float: left; width: 25%; margin-right: 5%" />
+				<input type="text" class="form-control " placeholder="请输入手机号"
+					ng-model="userkeyVo.telphone" style="width: 70%"
+					ng-change="isInputForTel()" />
+
+			</div>
+			<div class="loginbox-textbox" ng-show="tab=='usale'||tab=='telphone'">
+				<input type="password" class="form-control" placeholder="请输入密码"
+					ng-model="userkeyVo.password" ng-change="isInputForPassword()"
+					ng-keypress="enter($event)" />
+			</div>
+			<!-- 短信登录 -->
+			<div class="loginbox-textbox" ng-show="tab=='sms'">
+				<input type="text" class="form-control" placeholder="请输入验证码"
+					ng-model="currentCode"
+					style="float: left; width: 55%; margin-right: 3%" maxlength="6"
+					ng-change="isInputForCode()" ng-keypress="enter($event)" /> <input
+					ng-click="sendCode()" id="code-button" type="button"
+					class="form-control" value="获取验证码"
+					style="width: 42%; background-color: #cacaca; color: #fff"
+					disabled="disabled" />
+			</div>
+			<!-- 登录按钮 -->
+			<div class="loginbox-submit">
+				<input type="button" class="btn btn-primary btn-block" value="登录"
+					ng-click="login()" id="login-button" disabled="disabled">
+			</div>
+			<div class="loginbox-signup">
+				<span style="color: red" ng-bind="msg"></span>
+			</div>
+		</div>
+		<div class="logobox"></div>
+	</div>
+</body>
+<!--Body Ends-->
+<!-- entity -->
+<script src="../../js/models/UserVo.js"></script>
+<!--Skin Script: Place this script in head to load scripts for skins -->
+<script src="../../js/libs/skins.min.js"></script>
+<script src="../../js/libs/angular-1.5.0.min.js"></script>
+<script src="../../js/admin/system/AdminLogin.js"></script>
+<!--Basic Scripts-->
+<script src="../../js/libs/jquery-1.min.js"></script>
+<script src="../../js/libs/bootstrap-3.min.js"></script>
+<!--Beyond Scripts-->
+<script src="../../js/libs/beyond.min.js"></script>
+<script src="../../js/libs/md5.js"></script>
+<script src="../../js/plugins/ngDialog/ngDialog.min.js"></script>
+
+</html>

@@ -33,7 +33,7 @@ public class Controller {
          * URLs that are fetched and then the crawler starts following links
          * which are found in these pages
          */
-        controller.addSeed("http://www.sina.com.cn");
+        controller.addSeed("http://www.fitnes.cn/jianshen/");
 //        controller.addSeed("http://http://www.csdn.net/");
 //        controller.addSeed("http://www.ics.uci.edu/");
 

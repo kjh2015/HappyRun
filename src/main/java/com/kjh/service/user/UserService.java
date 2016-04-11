@@ -7,4 +7,7 @@ import com.kjh.domain.user.User;
  */
 public interface UserService {
      User getUserById(int userId);
+     void insertUser(User user);
+     void updateUser(User user);
+     void deleteUser(int userid);
 }

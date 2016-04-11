@@ -10,20 +10,20 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 自动扫描 -->
-    <!--<context:annotation-config></context:annotation-config>-->
-    <context:component-scan base-package="com.kjh" />
+    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="com.kjh"/>
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties" />
+        <property name="location" value="classpath:jdbc.properties"/>
     </bean>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="${driver}" />
-        <property name="jdbcUrl" value="${url}" />
-        <property name="user" value="${username}" />
-        <property name="password" value="${password}" />
+        <property name="driverClass" value="${driver}"/>
+        <property name="jdbcUrl" value="${url}"/>
+        <property name="user" value="${username}"/>
+        <property name="password" value="${password}"/>
         <!-- 初始化连接大小 -->
         <property name="initialPoolSize" value="${initialSize}"></property>
         <!-- 连接池最大数量 -->
@@ -41,21 +41,52 @@
 
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描mapping.xml文件 -->
         <property name="mapperLocations" value="classpath:/UserMapper.xml"></property>
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.kjh.dao.user" />
+        <property name="basePackage" value="com.kjh.dao.user"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!--定时任务-->
+   <!-- <bean id="taskJob" class="util.ExpireJobTask"/>
+    <bean id="methodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="taskJob"/>
+        </property>
+        <property name="targetMethod">
+            <value>doBiz</value>
+        </property>
+    </bean>
+    &lt;!&ndash; 配置触发器 &ndash;&gt;
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        &lt;!&ndash; 这里不可以直接在属性jobDetail中引用taskJob，因为他要求的是一个jobDetail类型的对象，所以我们得通过MethodInvokingJobDetailFactoryBean来转一下 &ndash;&gt;
+        <property name="jobDetail">
+            <ref bean="methodInvokingJobDetail"/>
+        </property>
+        &lt;!&ndash; 每天的8点到21点每隔1分钟触发，具体说明见附录 &ndash;&gt;
+        <property name="cronExpression">
+            <value>0 * * * * ?</value>
+        </property>
+        <property name="startDelay" value="10000" />
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        &lt;!&ndash; 添加触发器 &ndash;&gt;
+        <property name="triggers">
+            <list>
+                <ref local="cronTrigger"/>
+            </list>
+        </property>
+    </bean>-->
 </beans>

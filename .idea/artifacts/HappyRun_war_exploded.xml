@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="HappyRun:war exploded">
-    <output-path>$PROJECT_DIR$/target/HappyRun</output-path>
+    <output-path>$PROJECT_DIR$/target/happyRun</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -26,6 +26,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.2.13.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.2.13.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:3.2.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.2.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:3.2.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.7.4" />
@@ -56,10 +57,7 @@
           <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15:1.45" />
           <element id="library" level="project" name="Maven: org.apache.poi:poi:3.10-beta2" />
           <element id="library" level="project" name="Maven: org.apache.poi:poi-scratchpad:3.10-beta2" />
-          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.10-beta2" />
-          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:3.10-beta2" />
-          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.3.0" />
-          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.11" />
           <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-stax-api_1.0_spec:1.0.1" />
           <element id="library" level="project" name="Maven: org.ccil.cowan.tagsoup:tagsoup:1.2.1" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm-debug-all:4.1" />
@@ -76,11 +74,19 @@
           <element id="library" level="project" name="Maven: com.googlecode.juniversalchardet:juniversalchardet:1.0.3" />
           <element id="library" level="project" name="Maven: com.uwyn:jhighlight:1.0" />
           <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.6.3" />
+          <element id="library" level="project" name="Maven: org.dbunit:dbunit:2.5.1" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:3.11" />
+          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" />
+          <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.2.1" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.gagravarr:vorbis-java-core:tests:0.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/HappyRun/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/happyRun/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="HappyRun/web/Web" />
     </root>

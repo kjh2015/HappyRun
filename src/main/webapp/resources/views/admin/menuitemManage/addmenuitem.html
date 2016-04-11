@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加菜单项</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12 col-sm-12 col-xs-12">
+			<div class="widget">
+				<div class="widget-header bordered-bottom bordered-palegreen">
+					<span class="widget-caption">添加菜单项</span>
+				</div>
+				<div class="widget-body">
+					<div>
+						<div class="form-horizontal form-bordered">
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">*所属菜单</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入所属菜单"
+										ng-model="newMenuItem.menuname">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">*标题</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入标题"
+										ng-model="newMenuItem.menuitemname">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">图标</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入图标"
+										ng-model="newMenuItem.menuitemicon">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">排序</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入排序"
+										ng-model="newMenuItem.menuitemorder">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">地址</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入地址"
+										ng-model="newMenuItem.menuitemurl">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">路由地址</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入路由地址"
+										ng-model="newMenuItem.menuitemrouteurl">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">控制器</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入控制器"
+										ng-model="newMenuItem.menuitemctrl">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">父菜单项编号</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入父菜单项编号"
+										ng-model="newMenuItem.menuitemparentid">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3"
+									class="col-sm-2 control-label no-padding-right">是否显示</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="请输入是否显示"
+										ng-model="newMenuItem.isshow">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-1">
+									<button type="submit" class="btn btn-palegreen"
+										ng-click="addMenuItem()">确认</button>
+								</div>
+								<div class="col-sm-1">
+									<button type="submit" class="btn btn-palegreen"
+										ng-click="back()">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

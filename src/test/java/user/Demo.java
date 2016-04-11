@@ -2,11 +2,9 @@ package user;
 
 import com.kjh.domain.user.User;
 import com.kjh.service.user.UserService;
-import com.kjh.service.user.impl.UserServiceImpl;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,11 +21,34 @@ public class Demo {
         private UserService userService = null;
 
         @Test
-        public void test1() {
-            log.info("进入test1");
+        public void testQueryById() {
+            log.info("进入testQueryById");
             System.out.print(userService);
             User user = userService.getUserById(1);
             System.out.println(user);
         }
+
+    @Test
+    public void testInsert() {
+        log.info("进入testInsert");
+        User userForAdd = new User();
+        userForAdd.setUsername("test");
+         userService.insertUser(userForAdd);
+    }
+
+    @Test
+    public void testUpdate() {
+        log.info("进入testUpdate");
+        User userForUpdate = new User();
+        userForUpdate.setUserid(2);
+        userForUpdate.setUsername("TestName");
+        userService.updateUser(userForUpdate);
+    }
+    @Test
+    public void testDelete() {
+        log.info("进入testDelete");
+        userService.deleteUser(1);
+    }
+
 
 }
