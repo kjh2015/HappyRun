@@ -4,7 +4,7 @@ package com.kjh.domain.user;
  * Created by Administrator on 2016/3/20.
  */
 public class User {
-    private  Integer userid;
+    private Integer userid;
     private String username;
     private String password;
 
@@ -30,5 +30,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

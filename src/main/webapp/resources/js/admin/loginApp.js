@@ -26,9 +26,10 @@ loginApp.controller('LoginController', function($scope, $http, $window,
 			var json = userVo.voToJson();
 			console.log("json",json);
 			$(".loading-container").removeClass("loading-inactive");
-			$http.get('/happyRun/user/login.do?user=' + "{'username':'test','password':'test'}", {
+			$http({method:"post",url:"/happyRun/user/login.do",data:json})
+		/*	$http.get('/happyRun/user/login.do?username='+userVo.username + "&password="+userVo.password, {
 				"noCache" : Date()
-			}).success(function(data) {
+			})*/.success(function(data) {
 				$(".loading-container").addClass("loading-inactive");
 				if (data) {
 					if (data.serviceResult == true&&data.resultInfo=="1") {

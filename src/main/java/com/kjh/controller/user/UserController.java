@@ -5,14 +5,13 @@ import com.kjh.domain.user.User;
 import com.kjh.service.user.impl.UserServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -38,13 +37,21 @@ public class UserController {
      * @param request  请求.
      * @param response 响应.
      */
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login.do",method = RequestMethod.POST)
     @ResponseBody
-    public final void login(@RequestBody User user) {
+    public final ResultMessage login(@RequestBody User user) {
         logger.info("进入方法login");
         resultMessage = userService.login(user);
-
+        System.out.println("user"+user);
+        Map<String,Object> parm = new HashMap<String, Object>();
+        parm.put("user",user);
+//            String username = request.getParameter("username");
+//            String password = request.getParameter("password");
+//        System.out.println("username"+username);
+//        System.out.println("password"+password);
+        resultMessage.setResultParm(parm);
         logger.info("退出方法login");
+        return resultMessage;
     }
 
 
