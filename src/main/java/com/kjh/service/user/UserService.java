@@ -1,5 +1,7 @@
 package com.kjh.service.user;
 
+import com.kjh.domain.Pagination;
+import com.kjh.domain.ResultMessage;
 import com.kjh.domain.user.User;
 
 /**
@@ -10,4 +12,5 @@ public interface UserService {
      void insertUser(User user);
      void updateUser(User user);
      void deleteUser(int userid);
+     ResultMessage pageUser(Pagination pageInfo);
 }

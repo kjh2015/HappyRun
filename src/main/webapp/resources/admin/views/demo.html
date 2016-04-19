@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html  ng-app="app" ng-controller="myCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+
+    <link href="../css/libs/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<table class="table table-bordered table-responsive">
+    <tr ng-repeat="user in userList">
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+    </tr>
+</table>
+<ul class="pagination" id="page"></ul>
+
+<script src="../js/libs/jquery-1.min.js"></script>
+<script src="../js/libs/bootstrap-3.min.js"></script>
+<script src="../js/libs/angular-1.5.0.min.js"></script>
+<script
+        src="../js/plugins/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<script src="../js/demo.js"></script>
+<script src="../js/models/Pagination.js"></script>
+</body>
+</html>

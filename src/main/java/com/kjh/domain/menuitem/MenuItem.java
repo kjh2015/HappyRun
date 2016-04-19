@@ -11,4 +11,7 @@ public class MenuItem {
     private  String menuname;
     private  Integer menuitemparentid;
     private  String  menuitemname;
+    private  String menuitemrouteurl;
+    private  String menuitemctrl;
+    private  String menuitemurl;
 }

@@ -1,5 +1,6 @@
 package com.kjh.controller.user;
 
+import com.kjh.domain.Pagination;
 import com.kjh.domain.ResultMessage;
 import com.kjh.domain.user.User;
 import com.kjh.service.user.impl.UserServiceImpl;
@@ -21,7 +22,6 @@ public class UserController {
     @Resource
     private UserServiceImpl userService;
 
-    @Resource
     private ResultMessage resultMessage;
 
     @RequestMapping("/showUser")
@@ -54,5 +54,13 @@ public class UserController {
         return resultMessage;
     }
 
+    @RequestMapping(value = "/pageUser.do",method = RequestMethod.POST)
+    @ResponseBody
+    public final ResultMessage pageUser(@RequestBody  Pagination pageInfo) {
+        logger.info("进入方法pageUser");
+        resultMessage = userService.pageUser(pageInfo);
+        logger.info("退出方法pageUser");
+        return resultMessage;
+    }
 
 }
