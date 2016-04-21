@@ -21,5 +21,6 @@ public class Goods {
     private  Double price;
     private  Integer stock;
     private  Integer  subcategoryid;
+    private String subcategoryname;
 
 }

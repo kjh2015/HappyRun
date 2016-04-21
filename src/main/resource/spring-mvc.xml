@@ -43,6 +43,28 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 文件上传解析器 id 必须为multipartResolver -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760"/>
+    </bean>
+
+
+    <!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+    <!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+    <bean id="exceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->
+                <prop
+                        key="org.springframework.web.multipart.MaxUploadSizeExceededException">
+                    /resources/fontend/views/404.html
+                </prop>
+            </props>
+        </property>
+    </bean>
+
     <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
     <!--<bean id="multipartResolver"-->
     <!--class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
@@ -53,5 +75,5 @@
     <!--&lt;!&ndash; 内存中的最大值 &ndash;&gt;-->
     <!--<property name="maxInMemorySize" value="40960" />-->
     <!--</bean>-->
-     <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
+    <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
 </beans>

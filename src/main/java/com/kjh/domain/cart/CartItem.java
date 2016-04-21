@@ -10,13 +10,11 @@ import java.math.BigDecimal;
 @Data
 public class CartItem {
     private Integer  cartitemid;
-    private Integer cartid;
+    private  Integer cartid;
     private  Integer goodsid;
     private  String goodsname;
     private  Integer pieces;
     private  Double sellingprice;
     private BigDecimal subtotal;
-    private  Integer status;
-
 
 }
