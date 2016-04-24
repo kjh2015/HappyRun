@@ -76,7 +76,7 @@ public class UserController {
         logger.info("进入方法uploadFile");
         if(!file.isEmpty()){
             ServletContext sc = request.getSession().getServletContext();
-            String dir = sc.getRealPath("/upload");
+            String dir = sc.getRealPath("/resources/upload");
             String filename = file.getOriginalFilename();
 
            String  fileName = UUID.randomUUID().toString();
@@ -86,8 +86,6 @@ public class UserController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
             System.out.println("upload over. "+ filename);
         }
         logger.info("退出方法uploadFile");

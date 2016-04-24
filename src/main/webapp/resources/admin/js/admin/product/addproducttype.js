@@ -5,7 +5,7 @@ chldControllers
 		.controller(
 				'addproducttypectrl',
 				function($scope, $http, $window, ngDialog, Upload, $timeout) {
-					$scope.newProductVo = localStorageGet("newproductVo", false);
+					$scope.newProductVo = localStorageGet("goodsVo", false);
 					$scope.productTypeList = new Array();
 					$scope.tempArray = new Array();
 					$http
@@ -227,7 +227,7 @@ chldControllers
 						localStoragePut("tempFinishArray",
 								$scope.tempFinishArray);
 						window.location.href = "#/addproduct";
-						localStoragePut("newproductVo", $scope.newProductVo);
+						localStoragePut("goodsVo", $scope.newProductVo);
 					}
 					$scope.goback = function() {
 						window.location.href = "#/addproduct";

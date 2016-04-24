@@ -11,5 +11,4 @@ import java.util.List;
 public class CataGory {
     private  Integer catagoryid;
     private  String catagoryname;
-    private List<SubCataGory> subCataGoryList;
 }

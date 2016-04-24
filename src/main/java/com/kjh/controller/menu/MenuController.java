@@ -28,7 +28,7 @@ public class MenuController {
     @Resource
     private  ResultMessage resultMessage;
 
-    @RequestMapping("/getCurrentUserMenuItemTree")
+    @RequestMapping("/getCurrentUserMenuItemTree.do")
     public @ResponseBody
     ResultMessage getCurrentUserMenuItemTree() {
         logger.info("进入方法getCurrentUserMenuItemTree");

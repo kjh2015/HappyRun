@@ -3,7 +3,6 @@ package com.kjh.service.user.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kjh.dao.user.UserDao;
-import com.kjh.dao.user.impl.UserDaoImpl;
 import com.kjh.domain.Pagination;
 import com.kjh.domain.ResultMessage;
 import com.kjh.domain.user.User;

@@ -20,7 +20,5 @@ public class Goods {
     private Date registerdate;
     private  Double price;
     private  Integer stock;
-    private  Integer  subcategoryid;
-    private String subcategoryname;
-
+    private String goodsdesc;
 }
