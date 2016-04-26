@@ -101,6 +101,7 @@
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.2.1" />
           <element id="library" level="project" name="Maven: tk.mybatis:mapper:3.3.7" />
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
+          <element id="library" level="project" name="Maven: org.gagravarr:vorbis-java-core:tests:0.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
