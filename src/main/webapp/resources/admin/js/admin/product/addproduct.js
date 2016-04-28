@@ -56,30 +56,38 @@ chldControllers
 
 
             $scope.addProduct = function () {
-                for (var i = 0; i < $scope.fileList.length; i++) {
-                    Upload.upload({
-                        method: "post",
-                        url: baseUrl + "/upload/uploadFile.do",
-                        headers: {'Content-Type': 'multipasrt/form-data'},
-                        file: $scope.fileList[i]
-                    }).success(function (data) {
-                        if (data.serviceResult == true) {
-                            $scope.uploadURLList.push("/upload/product/" + data.resultParm.fileName);
-                            console.log(data.resultParm.fileName);
-                            if ($scope.uploadURLList.length == $scope.fileList.length) {
-                                $scope.goodsVo.images = $scope.uploadURLList.join(",");
-                                var json = $scope.goodsVo.voToJson();
-                                $http({method: "post", url: baseUrl + "goods/addGoods.do", data: json})
-                                /*$http.post(baseUrl+"goods/addGoods.do",$scope.goodsVo)*/.success(function (data) {
-                                    console.log(data);
-                                }).error(function (error) {
-                                    alert("失败");
-                                })
+                if($scope.fileList.length>0){
+                    for (var i = 0; i < $scope.fileList.length; i++) {
+                        Upload.upload({
+                            method: "post",
+                            url: baseUrl + "/upload/uploadFile.do",
+                            headers: {'Content-Type': 'multipasrt/form-data'},
+                            file: $scope.fileList[i]
+                        }).success(function (data) {
+                            if (data.serviceResult == true) {
+                                $scope.uploadURLList.push("/upload/product/" + data.resultParm.fileName);
+                                if ($scope.uploadURLList.length == $scope.fileList.length) {
+                                    $scope.goodsVo.images = $scope.uploadURLList.join(",");
+                                    $http({method: "post", url: baseUrl + "goods/addGoods.do", data: $scope.goodsVo})
+                                        .success(function (data) {
+                                            window.location.href = "#/goodsmanager";
+                                        }).error(function (error) {
+                                        alert("失败");
+                                    })
+                                }
                             }
-                        }
 
+                        })
+                    }
+                }else{
+                    $http({method: "post", url: baseUrl + "goods/addGoods.do", data: $scope.goodsVo})
+                        .success(function (data) {
+                            window.location.href = "#/goodsmanager";
+                        }).error(function (error) {
+                        alert("失败");
                     })
                 }
+
 
 
             }
