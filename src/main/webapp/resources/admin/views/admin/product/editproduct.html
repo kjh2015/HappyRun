@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>产品管理</title>
+<title>商品管理</title>
 </head>
 
 <body ng-controller="editProductCtrl">
@@ -11,118 +11,69 @@
 		<div class="col-lg-12 col-sm-12 col-xs-12">
 			<div class="widget">
 				<div class="widget-header bordered-bottom bordered-palegreen">
-					<span class="widget-caption">修改产品</span>
+					<span class="widget-caption">修改商品</span>
 				</div>
 				<div class="widget-body">
 					<div>
 						<div class="form-horizontal form-bordered">
-							<div class="form-group" style="display: none">
-								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 产品编号 </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="产品编号"
-										ng-model="editmenuitem.menuitemid">
-								</div>
-							</div>
 							<div class="form-group">
 								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> *产品名称
+									   class="col-sm-2 control-label no-padding-right"> *商品名称
 								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="请输入产品名称"
-										ng-model="productVo.productname" ng-change="check()">
+									<input type="text" class="form-control" placeholder="请输入商品名称"
+										   ng-model="goodsVo.goodsname">
 									<div style="margin-top: 5px; color: red"
-										ng-bind="productnameMsg"></div>
+										 ng-bind="productnameMsg"></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 产品类型 </label>
+									   class="col-sm-2 control-label no-padding-right"> 商品类别 </label>
 								<div class="col-sm-10">
-									<p type="text" class="form-control" placeholder="请输入产品类型"
-										ng-click="preEditProductType()">
-										{{productVo.producttypenames}}</p>
+									<p type="text" class="form-control" placeholder="请输入商品类别"
+									   ng-click="preEditProductType()">{{goodsVo.catagoryname}}</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 产品货币 </label>
-								<div class="col-sm-10">
-									<select class="form-control" ng-model="currenySeleted"
-										disabled="disabled" ng-options="a.currency for a in currencys">
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> *销售单价
+									   class="col-sm-2 control-label no-padding-right"> *价格
 								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="请输入销售单价"
-										ng-model="productVo.price" ng-change="check()">
+									<input type="text" class="form-control" placeholder="请输入价格"
+										   ng-model="goodsVo.sellingprice">
 									<div style="margin-top: 5px; color: red" ng-bind="priceMsg">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 产品单位
+									   class="col-sm-2 control-label no-padding-right"> 商品库存
 								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="请输入产品单位"
-										ng-model="productVo.unit" ng-change="check()">
+									<input type="text" class="form-control" placeholder="请输入商品库存"
+										   ng-model="goodsVo.stock">
 									<div style="margin-top: 5px; color: red" ng-bind="unitMsg">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 产品净重
+									   class="col-sm-2 control-label no-padding-right"> 商品成本
 								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="请输入产品净重"
-										ng-model="productVo.netweight" ng-blur="check()">
+									<input type="text" class="form-control" placeholder="请输入商品成本"
+										   ng-model="goodsVo.price">
 									<div style="margin-top: 5px; color: red" ng-bind="netweightMsg">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 产品规格
-								</label>
+									   class="col-sm-2 control-label no-padding-right"> 商品描述 </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="请输入产品规格"
-										ng-model="productVo.specification" ng-blur="check()">
-									<div style="margin-top: 5px; color: red"
-										ng-bind="specificationMsg"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 实际库存 </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="请输入实际库存"
-										ng-model="productVo.stock" disabled="disabled"
-										ng-blur="check()">
-									<div style="margin-top: 5px; color: red"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 供应商备注
-								</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="供应商备注"
-										ng-model="productVo.remark">
-									<div style="margin-top: 5px; color: red"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputEmail3"
-									class="col-sm-2 control-label no-padding-right"> 产品描述 </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="请输入产品描述"
-										ng-model="productVo.description">
+									<input type="text" class="form-control" placeholder="请输入商品描述"
+										   ng-model="goodsVo.goodsdesc">
 									<div style="margin-top: 5px; color: red"></div>
 								</div>
 							</div>
@@ -147,7 +98,7 @@
 										<div class="col-sm-4" ng-repeat="image in imageList">
 											<div class="databox databox-graded">
 												<div class="databox-left no-padding">
-													<img ng-src="/usale{{image.path}}"
+													<img ng-src="{{image}}"
 														style="width: 65px; height: 65px;">
 												</div>
 												<div class="databox-right padding-top-20 bg-whitesmoke">
