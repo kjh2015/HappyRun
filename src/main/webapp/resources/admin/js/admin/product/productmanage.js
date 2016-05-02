@@ -41,11 +41,15 @@ chldControllers
             $scope.recordkeyword = "";
             $scope.recordproductname = "";
             $scope.recordproducttypes = "";
+            $scope.searchGoodsPage = new SearchGoodsPaginationVo();
+            $scope.searchGoodsPage.page = $scope.page;
+            $scope.searchGoodsPage.goods = $scope.searchproduct;
 
             $scope.pageProduct = function () {
                 $(".loading-container").removeClass("loading-inactive");
                 var url = baseUrl2 + "/goods/findAllGoods.do";
-                $http({method: "post", url: url, data: $scope.page&$scope.searchproduct})
+                $http({method: "post", url: url, data: $scope.searchGoodsPage})
+                // $http.get(url)
                     .success(
                         function (data) {
                             $(".loading-container").addClass(
@@ -66,7 +70,6 @@ chldControllers
                                             data.imgArr = [baseUrl2 + "/resources/upload/product/1be73a45-09bc-478d-b1a2-c6aa41922dba.jpg"];
                                         }
                                     })
-                                    console.log("products", $scope.products);
                                     // 记录搜索关键字
                                     $scope.recordkeyword = $scope.keyword;
                                     $scope.recordproductname = $scope.searchproduct.productname;
@@ -123,14 +126,13 @@ chldControllers
             $scope.myKeyup = function (e) {
                 var keycode = window.event ? e.keyCode : e.which;
                 if (keycode == 13) {
-                    if ($scope.recordkeyword != $scope.keyword
-                        || $scope.recordproductname != $scope.searchproduct.productname
-                        || $scope.recordproducttypes != $scope.searchproduct.producttypenames) {
-                        $scope.pageProduct();
-                    }
+                    $scope.pageProduct();
                 }
             };
 
+            $scope.preEditProductType = function () {
+                $window.location.href = "#/addproducttype";
+            }
 
             $scope.deleteProduct = function (product) {
                 ngDialog
@@ -148,7 +150,7 @@ chldControllers
                         function () {
                             var productfordel = new GoodsVo();
                             productfordel.goodsid = product.goodsid;
-                          $http({method:'post',url:baseUrl2+"/goods/deleteGoods.do",data:productfordel})
+                            $http({method: 'post', url: baseUrl2 + "/goods/deleteGoods.do", data: productfordel})
                                 .success(
                                     function (data) {
                                         $(

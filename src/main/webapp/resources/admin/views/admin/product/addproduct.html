@@ -32,7 +32,7 @@
                                    class="col-sm-2 control-label no-padding-right"> 商品类别 </label>
                             <div class="col-sm-10">
                                 <p type="text" class="form-control" placeholder="请输入商品类别"
-                                   ng-click="preEditProductType()">{{goodsVo.categoryname}}</p>
+                                   ng-click="preEditProductType()" ng-bind="goodsVo.catagoryname"></p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -72,8 +72,8 @@
                             <label for="inputEmail3"
                                    class="col-sm-2 control-label no-padding-right"> 商品描述 </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="请输入商品描述"
-                                       ng-model="goodsVo.goodsdesc">
+                                <textarea  class="form-control" placeholder="请输入商品描述"
+                                       ng-model="goodsVo.goodsdesc"></textarea>
                                 <div style="margin-top: 5px; color: red"></div>
                             </div>
                         </div>

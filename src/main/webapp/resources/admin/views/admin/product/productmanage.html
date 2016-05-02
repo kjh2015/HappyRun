@@ -97,7 +97,7 @@
                                 ng-class="{false:'fa row-details fa-plus-square-o',true:'fa row-details fa-minus-square-o'}[product.flag]"></i>
                 </td>
                 <td class="">{{product.goodsname}}</td>
-                <td class=" ">{{product.categoryname}}</td>
+                <td class=" ">{{product.catagoryname}}</td>
                 <td class=" ">{{product.sellingprice}}</td>
                 <td class=" "><a href="javascript:void(0);"
                                  ng-click="preEditProduct(product.goodsid)"
@@ -143,7 +143,7 @@
                         <tr>
                             <td style="margin-left: 10px"></td>
                             <td class="details">商品类型:</td>
-                            <td class="details">{{product.categoryname}}</td>
+                            <td class="details">{{product.catagoryname}}</td>
                         </tr>
                         <tr>
                             <td style="margin-left: 10px"></td>
@@ -164,7 +164,7 @@
                         <tr>
                             <td style="margin-left: 10px"></td>
                             <td class="details">商品描述:</td>
-                            <td class="details">{{product.goodsdesc}}</td>
+                            <td class="details"><textarea rows="5" cols="100">{{product.goodsdesc}}</textarea></td>
                         </tr>
                         </tbody>
                     </table>

@@ -8,19 +8,13 @@ chldControllers
             $scope.imageList = new Array();
             $scope.uploadURLList = new Array();
             $scope.fileList = new Array();
-            $scope.goodsVo = new GoodsVo();
+            $scope.goodsVo = localStorageGet("goodsVo", true);
+            console.log("goodsVoAdd", $scope.goodsVo);
+            if ($scope.goodsVo == null) {
+                $scope.goodsVo = new GoodsVo();
+            }
             // $scope.goodsVo = localStorageGet("goodsVo", true);
             $scope.tempArr = [];
-            var productTypeList = localStorageGet("tempFinishArray",
-                true);
-            if (productTypeList != null) {
-                var tempProductTypeList = new Array();
-                angular.forEach(productTypeList, function (item) {
-                    tempProductTypeList.push(item.producttypename);
-                })
-                $scope.goodsVo.producttypenames = tempProductTypeList
-                    .join(",");
-            }
 
 
             $scope.preEditProductType = function () {
@@ -45,49 +39,70 @@ chldControllers
                 $scope.fileList.splice(index, 1);
             }
             // 返回
-            $scope.selectChange = function () {
-                $scope.goodsVo.currencyid = $scope.currencySelected.currencyid;
-                $scope.goodsVo.currency = $scope.currencySelected.currency;
-                $scope.check();
-            }
+            // $scope.selectChange = function () {
+            //     $scope.goodsVo.currencyid = $scope.currencySelected.currencyid;
+            //     $scope.goodsVo.currency = $scope.currencySelected.currency;
+            //     $scope.check();
+            // }
             $scope.back = function () {
                 window.location.href = "#/product";
             }
 
 
             $scope.addProduct = function () {
-                if($scope.fileList.length>0){
-                    for (var i = 0; i < $scope.fileList.length; i++) {
-                        Upload.upload({
-                            method: "post",
-                            url: baseUrl + "/upload/uploadFile.do",
-                            headers: {'Content-Type': 'multipasrt/form-data'},
-                            file: $scope.fileList[i]
-                        }).success(function (data) {
-                            if (data.serviceResult == true) {
-                                $scope.uploadURLList.push("/upload/product/" + data.resultParm.fileName);
-                                if ($scope.uploadURLList.length == $scope.fileList.length) {
-                                    $scope.goodsVo.images = $scope.uploadURLList.join(",");
-                                    $http({method: "post", url: baseUrl + "goods/addGoods.do", data: $scope.goodsVo})
-                                        .success(function (data) {
-                                            window.location.href = "#/goodsmanager";
-                                        }).error(function (error) {
-                                        alert("失败");
-                                    })
+                console.log("addGoods", $scope.goodsVo);
+                if (typeof $scope.goodsVo.catagoryid == 'undefined' || typeof $scope.goodsVo.catagoryname == 'undefined' || $scope.goodsVo.catagoryid == null || $scope.goodsVo.catagoryname == null) {
+                    ngDialog
+                        .openConfirm(
+                            {
+                                template: '<h3>'
+                                + '产品类型不能为空'
+                                + '</h3><hr/>'
+                                + '<div class="ngdialog-buttons">'
+                                + '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">确定</button></div>',
+                                plain: true,
+                                scope: $scope,
+                                closeByEscape: false
+                            })
+                } else {
+                    if ($scope.fileList.length > 0) {
+                        for (var i = 0; i < $scope.fileList.length; i++) {
+                            Upload.upload({
+                                method: "post",
+                                url: baseUrl + "/upload/uploadFile.do",
+                                headers: {'Content-Type': 'multipasrt/form-data'},
+                                file: $scope.fileList[i]
+                            }).success(function (data) {
+                                if (data.serviceResult == true) {
+                                    $scope.uploadURLList.push("/upload/product/" + data.resultParm.fileName);
+                                    if ($scope.uploadURLList.length == $scope.fileList.length) {
+                                        $scope.goodsVo.images = $scope.uploadURLList.join(",");
+                                        //去掉最后一个","
+                                        $scope.goodsVo.images.slice(0, $scope.goodsVo.images.lastIndexOf(","));
+                                        $http({
+                                            method: "post",
+                                            url: baseUrl + "goods/addGoods.do",
+                                            data: $scope.goodsVo
+                                        })
+                                            .success(function (data) {
+                                                window.location.href = "#/goodsmanager";
+                                            }).error(function (error) {
+                                            alert("失败");
+                                        })
+                                    }
                                 }
-                            }
 
+                            })
+                        }
+                    } else {
+                        $http({method: "post", url: baseUrl + "goods/addGoods.do", data: $scope.goodsVo})
+                            .success(function (data) {
+                                window.location.href = "#/goodsmanager";
+                            }).error(function (error) {
+                            alert("失败");
                         })
                     }
-                }else{
-                    $http({method: "post", url: baseUrl + "goods/addGoods.do", data: $scope.goodsVo})
-                        .success(function (data) {
-                            window.location.href = "#/goodsmanager";
-                        }).error(function (error) {
-                        alert("失败");
-                    })
                 }
-
 
 
             }

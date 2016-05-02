@@ -6,6 +6,7 @@ chldControllers
         'editproductctrl',
         function ($scope, $http, $window, ngDialog, Upload, $timeout) {
             $scope.imageList = new Array();
+            $scope.imageListCopy = [];
             $scope.uploadURLList = new Array();
             $scope.fileList = new Array();
             $scope.goodsVo = localStorageGet("goodsVo");
@@ -16,6 +17,8 @@ chldControllers
                     $scope.goodsVo = data.resultParm.goodsInfo;
                     if ($scope.goodsVo.images != 'undefined' && $scope.goodsVo.images != null) {
                         $scope.imageList = $scope.goodsVo.images.split(",");
+                        console.log("imageList",$scope.imageList);
+                        $scope.imageListCopy = $scope.imageList.concat();
                         angular.forEach($scope.imageList, function (data, index) {
                             $scope.imageList[index] = baseUrl2 + "/resources" + data;
                         })
@@ -51,10 +54,7 @@ chldControllers
             $scope.deleteImage = function (index) {
                 $scope.imageList.splice(index, 1);
             }
-            // 删除图片
-            $scope.deleteAddImage = function (index) {
-                $scope.fileList.splice(index, 1);
-            }
+
 
             $scope.back = function () {
                 window.location.href = "#/product";
@@ -62,7 +62,6 @@ chldControllers
 
 
             $scope.editProduct = function () {
-                console.log("goosVoEdit",$scope.goodsVo);
                 if ($scope.fileList.length > 0) {
                     for (var i = 0; i < $scope.fileList.length; i++) {
                         Upload
@@ -89,8 +88,11 @@ chldControllers
                                                 angular.forEach($scope.uploadURLList, function (data, index) {
                                                     $scope.uploadURLList[index] = "/upload/product/" + data;
                                                 })
+                                                $scope.uploadURLList.push($scope.imageListCopy);
                                                 $scope.goodsVo.images = $scope.uploadURLList
                                                     .join(',');
+                                                //去掉最后一个","
+                                                $scope.goodsVo.images = $scope.goodsVo.images.slice(0,$scope.goodsVo.images.lastIndexOf(","));
                                                 $(
                                                     ".loading-container")
                                                     .removeClass(
