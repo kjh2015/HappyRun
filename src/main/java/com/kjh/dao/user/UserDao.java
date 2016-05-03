@@ -15,4 +15,5 @@ public interface UserDao {
     void deleteUser(int userid);
     User login(User user);
     List<User> pageUser();
+    User getUserByName(String username);
 }

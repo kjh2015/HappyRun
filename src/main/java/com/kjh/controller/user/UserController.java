@@ -49,14 +49,6 @@ public class UserController {
     public final ResultMessage login(@RequestBody User user) {
         logger.info("进入方法login");
         resultMessage = userService.login(user);
-        System.out.println("user" + user);
-        Map<String, Object> parm = new HashMap<String, Object>();
-        parm.put("user", user);
-//            String username = request.getParameter("username");
-//            String password = request.getParameter("password");
-//        System.out.println("username"+username);
-//        System.out.println("password"+password);
-        resultMessage.setResultParm(parm);
         logger.info("退出方法login");
         return resultMessage;
     }

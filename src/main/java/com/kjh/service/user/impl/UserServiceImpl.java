@@ -7,6 +7,10 @@ import com.kjh.domain.Pagination;
 import com.kjh.domain.ResultMessage;
 import com.kjh.domain.user.User;
 import com.kjh.service.user.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,26 +23,16 @@ import java.util.Map;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
-    private static final  int pageSize = 5;
+    private static final int pageSize = 5;
     @Resource
     private UserDao userDao;
     @Resource
     private ResultMessage resultMessage;
+
     @Override
     public User getUserById(int userId) {
         User user = this.userDao.getUserById(userId);
         return user;
-    }
-
-    public ResultMessage login(User user){
-        User userForLogin = this.userDao.login(user);
-        if(userForLogin==null){
-            resultMessage.setResultInfo("42001");
-        }else{
-            resultMessage.setResultInfo("1");
-        }
-        resultMessage.setServiceResult(true);
-        return resultMessage;
     }
 
 
@@ -58,22 +52,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByName(String username) {
+        User user = userDao.getUserByName(username);
+        return user;
+    }
+
+    @Override
     public ResultMessage pageUser(Pagination page) {
-        PageHelper.startPage(page.getStartPage(),5);
+        PageHelper.startPage(page.getStartPage(), 5);
         List<User> userList = userDao.pageUser();
         PageInfo<User> pageInfo = new PageInfo<User>(userList);
         Pagination pageForReturn = new Pagination();
         pageForReturn.setPageSize(5);
         pageForReturn.setStartPage(page.getStartPage());
         pageForReturn.setPageList(pageInfo.getList());
-        pageForReturn.setTotalCount(Integer.valueOf(pageInfo.getTotal()+""));
+        pageForReturn.setTotalCount(Integer.valueOf(pageInfo.getTotal() + ""));
         resultMessage.setResultInfo("1");
         resultMessage.setServiceResult(true);
-        Map<String,Object> parm = new HashMap<String,Object>();
-        parm.put("pageInfo",pageForReturn);
+        Map<String, Object> parm = new HashMap<String, Object>();
+        parm.put("pageInfo", pageForReturn);
         resultMessage.setResultParm(parm);
         return resultMessage;
     }
 
+    public ResultMessage login(User user) {
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        Subject currentUser = SecurityUtils.getSubject();
+        try {
+            currentUser.login(token);
+            resultMessage.setResultInfo("200");
+            resultMessage.setServiceResult(true);
+        } catch (AuthenticationException ae) {
+            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
+            resultMessage.setServiceResult(false);
+            //登录信息不存在
+            resultMessage.setResultInfo("42002");
+            ae.printStackTrace();
+        }catch (Exception e){
+            resultMessage.setServiceResult(false);
+            resultMessage.setResultInfo(e.toString());
+        }
+        return resultMessage;
+    }
 
 }

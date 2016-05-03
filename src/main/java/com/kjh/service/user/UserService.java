@@ -12,5 +12,6 @@ public interface UserService {
      void insertUser(User user);
      void updateUser(User user);
      void deleteUser(int userid);
+     User getUserByName(String username);
      ResultMessage pageUser(Pagination pageInfo);
 }

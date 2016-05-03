@@ -23,16 +23,14 @@ loginApp.controller('LoginController', function($scope, $http, $window,
 			var userVo = new UserVo();
 			userVo.password = $scope.userVo.password;
 			userVo.username = $scope.userVo.username;
-			var json = userVo.voToJson();
-			console.log("json",json);
 			$(".loading-container").removeClass("loading-inactive");
-			$http({method:"post",url:"/happyRun/user/login.do",data:json})
+			$http({method:"post",url:"/happyRun/user/login.do",data:userVo})
 		/*	$http.get('/happyRun/user/login.do?username='+userVo.username + "&password="+userVo.password, {
 				"noCache" : Date()
 			})*/.success(function(data) {
 				$(".loading-container").addClass("loading-inactive");
 				if (data) {
-					if (data.serviceResult == true&&data.resultInfo=="1") {
+					if (data.serviceResult == true&&data.resultInfo=="200") {
 						console.log("data.resultInfo",data.resultInfo);
 						$window.location.href = "home.html";
 					} else {
